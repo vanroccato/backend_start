@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class TipoService extends AbstractService<Tipo, Long> {
+public class TipoService extends AbstractService {
 	
 	private final TipoRepository repository;
 	
@@ -50,6 +50,11 @@ public class TipoService extends AbstractService<Tipo, Long> {
 		}
 		tipo.setDataAlteracao(new Date());
 		return this.repository.save(tipo);
+	}
+
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
