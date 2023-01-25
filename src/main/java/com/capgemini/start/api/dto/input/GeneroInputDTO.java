@@ -1,3 +1,4 @@
+
 package com.capgemini.start.api.dto.input;
 
 import javax.validation.constraints.NotNull;
@@ -11,16 +12,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Schema(name = "GeneroInput", description = "Objeto de entrada para inclusão e alteração da entidade Genero")
-
-
-
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class GeneroInputDTO {
 
 	@NotNull
 	@Length(max = 100)
 	private String descricao;
 
-
-}
 
 }

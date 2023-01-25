@@ -15,43 +15,41 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class GeneroService extends AbstractService<Genero, Integer> {
-
+public class GeneroService extends AbstractService<Genero, Long> {
+	
 	private final GeneroRepository repository;
-
+	
 	@Override
-	protected JpaRepository<Genero, Integer> getRepository() {
+	protected JpaRepository<Genero, Long> getRepository() {
 		return this.repository;
 	}
-
-	public Genero findById(Integer id) {
-		return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Gênero não encontrado!"));
-	}
-
-	public List<Genero> findAll(){
+	
+	@Override
+	public List<Genero> findAll() {
 		return repository.findAll();
 	}
-
+	
+	@Override
+	public Genero findById(Long id){
+		return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Genero não encontrado"));
+	}
+	
 	@Override
 	public Genero insert(Genero genero) {
-		if(this.repository.existsByDescricaoIgnoreCase(genero.getDescricao())) {
+		if (this.repository.existsByDescricaoIgnoreCase(genero.getDescricao())){
 			throw new ObjectAlreadyExistsException("Já existe um genero com esta descrição.");
 		}
-		genero.setDataInclusao((java.sql.Date) new Date());
+		genero.setDataCriacao(new Date());
 		return this.repository.save(genero);
 	}
-
+	
+	@Override
 	public Genero update(Genero genero) {
-		if(this.repository.existsByIdNotAndDescricaoIgnoreCase(genero.getId(), genero.getDescricao())) {
+		if (this.repository.existsByIdNotAndDescricaoIgnoreCase(genero.getId(), genero.getDescricao())) {
 			throw new ObjectAlreadyExistsException("Já existe outro genero com esta descrição.");
 		}
-		genero.setDataAlteracao((java.sql.Date) new Date());
-		return repository.save(genero);
-	}
-
-	@Override
-	public void delete(Integer id) {
-		repository.deleteById(id);
+		genero.setDataAlteracao(new Date());
+		return this.repository.save(genero);
 	}
 
 }

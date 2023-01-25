@@ -15,7 +15,9 @@ import com.capgemini.start.api.dto.input.GeneroInputDTO;
 import com.capgemini.start.api.dto.output.GeneroDTO;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Genero", description = "Genero de título")
 public interface GeneroResource {
 	@Operation(summary = "Consulta um Genero por id")
 	@GetMapping(value = "/{id}")
@@ -37,10 +39,5 @@ public interface GeneroResource {
 	@DeleteMapping(value = "/{id}")
 	ResponseEntity<Void> delete(@PathVariable Long id);
 
-	ResponseEntity<Void> delete(Integer id);
-
-	ResponseEntity<GeneroDTO> update(Integer id, @Valid GeneroDTO genero);
-
-	ResponseEntity<GeneroDTO> findById(Integer id);
-
+	
 }

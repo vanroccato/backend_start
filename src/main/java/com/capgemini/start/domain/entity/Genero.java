@@ -1,7 +1,6 @@
 package com.capgemini.start.domain.entity;
 
 import java.util.Date;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity(name="tb_genero")
 public class Genero {
 	
@@ -31,27 +32,8 @@ public class Genero {
 	
 	@Column(name = "dt_criacao", nullable = false)
 	private Date dataCriacao;
-
+	
 	@Column(name = "dt_alteracao")
 	private Date dataAlteracao;
-
-	public void setDescricao(Object descricao2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Map<String, ?> getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getDescricao() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setDataInclusao(Date date) {
-		// TODO Auto-generated method stub
-		
-	}
-	}
+	
+}
